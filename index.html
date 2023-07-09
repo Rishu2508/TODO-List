@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<title>TODO List using jQuery</title>
+	<!-- <link rel="stylesheet" type="text/css" href="D:\My codings\Font\font-awesome-4.7.0\css\font-awesome.css"> -->
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+			font-family: 'Cambria';
+		}
+		body{
+			background: linear-gradient(to right,#f13636bd,#1e48bf);
+		}
+
+		h1{
+			background: #2980b9;
+			color: white;
+			margin: 0px;
+			padding: 10px 20px;
+			font-size: 24px;
+			text-transform: uppercase;
+			border-top-right-radius: 10px;
+			border-top-left-radius: 10px;
+		}
+		.container{
+			margin: 100px auto;
+			width: 400px;
+			background: #e6e6e6;
+			max-width: 400px;
+			filter: drop-shadow(0 0 40px rgba(0,0,0,0.2));
+			border-radius: 10px;
+		}
+		ul{
+			list-style: none;
+		}
+		li{
+			background: #fff;
+			height: 40px;
+			line-height: 40px;
+			color: #333;
+		}
+		li:nth-child(even) {
+			background: #e6e6e6;
+		}
+		li:last-child {
+			border-bottom-right-radius: 10px;
+			border-bottom-left-radius: 10px;
+		}
+		li:last-child span {
+			border-bottom-left-radius: 10px;
+		}
+		span {
+			background: #e74c3c;
+			color: white;
+			height: 40px;
+			margin-right: 20px;
+			text-align: center;
+			width: 0px;
+			display: inline-block;
+			transition: 0.2s linear;
+			opacity: 0;
+		}
+		li:hover span {
+			opacity: 1;
+			width: 40px;
+		}
+		span:hover, .fa-plus:hover {
+			cursor: pointer;
+		}
+		input {
+			font-size: 18px;
+			background: #e6e6e6;
+			width: 100%;
+			padding: 13px 13px 13px 20px;
+			border: none;
+			border:3px solid #2980b900;
+		}
+		input:focus{
+			outline: none;
+			background: white;
+			border:3px solid #2980b9;
+		}
+		.fa-plus {
+			font-weight: 100;
+			float: right;
+		}
+		.done{
+			text-decoration: line-through;
+			color: gray;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>TO-DO List<i class="fa fa-plus"></i></h1>
+		<input type="text" placeholder="Add new Todo">
+		<ul>
+			<li><span><i class="fa fa-trash"></i></span>Revise Javascript</li>
+			<li><span><i class="fa fa-trash"></i></span>Revise Node JS</li>
+			<li><span><i class="fa fa-trash"></i></span>Learn React JS</li>
+			<li><span><i class="fa fa-trash"></i></span>Learn Angular JS</li>
+			<li><span><i class="fa fa-trash"></i></span>Create a project</li>
+			<li><span><i class="fa fa-trash"></i></span>Try something new</li>
+		</ul>
+	</div>
+<script type="text/javascript">
+	$('ul').on("click","li",function (){
+		$(this).toggleClass('done');
+	});
+
+	$('ul').on("click","span",function (event) {
+		$(this).parent().fadeOut(500,function () {
+			$(this).remove();
+		});
+		event.stopPropagation();
+	});
+
+	$('input[type="text"]').keypress(function (e) {
+		if(e.which == 13){
+			var txt = $(this).val();
+			$('ul').append('<li><span><i class="fa fa-trash"></i></span> ' + txt + '</li>');
+			$(this).val('');
+		}
+	});
+
+	$('.fa-plus').click(function() {
+		$('input').fadeToggle();
+	})
+</script>
+</body>
+</html>
